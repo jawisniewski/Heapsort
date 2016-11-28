@@ -1,7 +1,8 @@
 #! /usr/bin/env ruby
 require 'benchmark'
-require '../lib/heapsort.rb'
-
+$LOAD_PATH.unshift File.join(__dir__, './lib')
+$LOAD_PATH.unshift File.join(__dir__, '../lib')
+require 'heapsort.rb'
 rand1 = (1..200000).map { rand }
 rand2 = (1..500000).map { rand }
 rand3 = rand1, rand2
