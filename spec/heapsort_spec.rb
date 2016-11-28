@@ -106,14 +106,15 @@ RSpec.describe 'heapsort.rb' do
   end
   it 'float and int ' do
     $i =0
-    @unsorted = [1 ,3.33 ,5.21 ,5.22, 7,9.9, 12,22.23]
+    @unsorted = *@unsorted
     @unsorted.heapsort!
-    expect(  @unsorted).to  match([1, 3.33, 5.21, 5.22, 7, 9.9, 12, 22.23])
+    expect(  @unsorted).to  match([*@sorted])
   end
+  # 40.times.map { ('a'..'z').to_a.shuffle[0..8].join}
   it 'float and string  = string' do
-    @unsorted = ["ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO","1" ,"3.33" ,"5.21" ,"5.22", "7","9.9", "12","22.23"]
+    @unsorted = [*@unsortedWords,"1" ,"3.33" ,"5.21" ,"5.22", "7","9.9", "12","22.23"]
     @unsorted.heapsort!
-    expect(@unsorted).to  match(["1", "12", "22.23", "3.33", "5.21", "5.22", "7", "9.9", "ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO"])
+    expect(@unsorted).to  match(["1", "12", "22.23", "3.33", "5.21", "5.22", "7", "9.9", *@sortedWords])
   end
   it 'special keys' do
     @unsorted = ["#", "!@#", "ZA", ";", "/", "1", "!", "@"]
@@ -127,29 +128,29 @@ RSpec.describe 'heapsort.rb' do
 )
   end
  it '[string] and float' do
-    @unsortedTable =  @unsortedWords ,1.22 ,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12,22.23
+    @unsortedTable =  @unsortedWords ,*@unsorted
     @unsortedTable.heapsort!
-    expect(@unsortedTable).to match ([0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23,@sortedWords])
+    expect(@unsortedTable).to match ([*@sorted,@sortedWords])
   end
   it 'float and [string]' do
-    @unsorted = 1.22,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12, 22.23, @unsortedWords
+    @unsorted = *@unsorted, @unsortedWords
     @unsorted.heapsort!
-    expect(@unsorted).to match ([0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23,@sortedWords])
+    expect(@unsorted).to match ([*@sorted,@sortedWords])
   end
   it ' string and [string]' do
-    @unsorted = "ALA" ,"MA" ,"KOTKA" ,"JOZEFA", "STAREGO","BO", "MA","KOTA",@unsortedWords
+    @unsorted = *@unsortedWords,@unsortedWords
     @unsorted.heapsort!
-    expect(@unsorted).to match ([ "ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO", @sortedWords])
+    expect(@unsorted).to match ([ *@sortedWords, @sortedWords])
   end
  it 'string and [string] [float] ' do
-    @unsorted =  "ALA" ,"MA" ,"KOTKA" ,"JOZEFA", "STAREGO","BO", "MA","KOTA",@unsortedWords,@unsorted
+    @unsorted = *@unsortedWords,@unsortedWords,@unsorted
     @unsorted.heapsort!
-    expect(@unsorted).to match (["ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO", @sorted,@sortedWords])
+    expect(@unsorted).to match ([*@sortedWords, @sorted,@sortedWords])
   end
  it 'float and [string] [float] ' do
-    @unsorted = 1.22,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12, 22.23, @unsortedWords,@unsorted
+    @unsorted = *@unsorted, @unsortedWords,@unsorted
     @unsorted.heapsort!
-    expect(@unsorted).to match ([0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23, @sorted,@sortedWords])
+    expect(@unsorted).to match ([*@sorted, @sorted,@sortedWords])
   end
   it '[string] [float] and [float]' do
     @unsorted = @unsortedWords,@unsorted,@unsorted
@@ -157,18 +158,18 @@ RSpec.describe 'heapsort.rb' do
     expect(@unsorted).to match ([@sorted,@sorted,@sortedWords])
   end
   it ' [string] float and [float] ' do
-    @unsorted =@unsortedWords, 1.22,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12, 22.23, @unsorted
+    @unsorted =@unsortedWords, *@unsorted, @unsorted
     @unsorted.heapsort!
-    expect(@unsorted).to match ([0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23, @sorted,@sortedWords])
+    expect(@unsorted).to match ([*@sorted, @sorted,@sortedWords])
   end
   it ' [string] [float] and float  ' do
-    @unsorted =@unsortedWords, @unsorted, 1.22,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12, 22.23
+    @unsorted =@unsortedWords, @unsorted, *@unsorted
     @unsorted.heapsort!
-    expect(@unsorted).to match ([0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23, @sorted,@sortedWords])
+    expect(@unsorted).to match ([*@sorted, @sorted,@sortedWords])
   end
   it ' [string] [float] and string  ' do
-    @unsorted =@unsortedWords, @unsorted, "ALA" ,"MA" ,"KOTKA" ,"JOZEFA", "STAREGO","BO", "MA","KOTA"
+    @unsorted =@unsortedWords, @unsorted, *@unsortedWords
     @unsorted.heapsort!
-    expect(@unsorted).to match (["ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO", @sorted,@sortedWords])
+    expect(@unsorted).to match ([*@sortedWords, @sorted,@sortedWords])
   end
 end

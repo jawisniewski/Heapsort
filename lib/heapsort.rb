@@ -1,5 +1,5 @@
+
 public def Rozdziel (childArray)
-  $czy_ponownie = 1
   childArray.heapsort!
 end
 public def heapsort!
