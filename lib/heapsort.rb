@@ -4,12 +4,13 @@ public def Rozdziel (childArray)
 end
 public def heapsort!
   j=0
-  while j<self.length
+  self.each {
     if(self[j].is_a?(Array)) then
     Rozdziel self[j]
     end
     j +=1
-  end
+ }
+
     1.upto(self.length - 1) do |i|
       child = i
       while child > 0
