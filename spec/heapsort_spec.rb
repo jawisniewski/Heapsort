@@ -4,8 +4,8 @@ require 'heapsort'
 require 'rspec'
 RSpec.describe 'heapsort.rb' do
  before(:each) do
-   @unsorted = [1.22 ,3.33 ,5.21 ,5.22, 7.22,9.9, 0.12,22.23]
-   @sorted =[0.12, 1.22, 3.33, 5.21, 5.22, 7.22, 9.9, 22.23]
+   @unsorted = [1.22 ,3.33 ,12.55 ,5.22, 7.22,9.9, 0.12,22.23]
+   @sorted =[0.12, 1.22, 3.33, 5.22, 7.22, 9.9, 12.55, 22.23]
    @unsortedWords = ["ALA" ,"MA" ,"KOTKA" ,"JOZEFA", "STAREGO","BO", "MA","KOTA"]
    @sortedWords = ["ALA", "BO", "JOZEFA", "KOTA", "KOTKA", "MA", "MA", "STAREGO"]
   end
@@ -13,7 +13,7 @@ RSpec.describe 'heapsort.rb' do
       expect{@unsorted.heapsort!}.not_to raise_error
   end
 
-  
+
   it 'float' do
     @unsorted.heapsort!
     expect( @unsorted).to  match(@sorted)
@@ -41,7 +41,7 @@ RSpec.describe 'heapsort.rb' do
     @unsorted.heapsort!
     expect(@unsorted.size).to eq(8)
   end
-  
+
   it 'uncorect string' do
     @unsortedWords.heapsort!
     expect(  @unsortedWords).to  match(@sortedWords)
