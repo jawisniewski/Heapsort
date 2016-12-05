@@ -4,24 +4,17 @@ public def Rozdziel (childArray)
 end
 public def heapsort!
   j=0
+  if(self.any? {|word| word.is_a?(Array)})
   self.each {
     if(self[j].is_a?(Array)) then
     Rozdziel self[j]
     end
     j +=1
- }
-  #    j=0
- # if(self.any? {|word| word.is_a?(Array)})
-#  self.each {
-#    if(self[j].is_a?(Array)) then
-#    Rozdziel self[j]
- #   end
- #   j +=1
-#}
+}
 end
 
     1.upto(self.length - 1) do |i|
-      child = i
+       child = i
       while child > 0
         parent = (child - 1) / 2
         if (self[parent].is_a?(Array) ) then
@@ -77,3 +70,18 @@ end
   end
 end
 
+
+
+#foo = [5, 11, 33, 2, 19, 4, 8, 22, 1, 12]
+#foo.heapsort!
+#p foo
+
+#random_names = File.read("heap.txt")
+#random_names= random_names.split( ',')
+#random_names.heapsort!
+#p random_names
+#random_names = File.read("heapInt.txt")
+#random_names= random_names.split(",").map { |s| s.to_i }
+#random_names.heapsort!
+
+#p random_names
