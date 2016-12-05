@@ -68,18 +68,3 @@ public def heapsort!
   end
 end
 
-
-
-#foo = [5, 11, 33, 2, 19, 4, 8, 22, 1, 12]
-#foo.heapsort!
-#p foo
-
-#random_names = File.read("heap.txt")
-#random_names= random_names.split( ',')
-#random_names.heapsort!
-#p random_names
-#random_names = File.read("heapInt.txt")
-#random_names= random_names.split(",").map { |s| s.to_i }
-#random_names.heapsort!
-
-#p random_names
