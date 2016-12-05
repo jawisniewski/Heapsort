@@ -13,19 +13,14 @@ RSpec.describe 'heapsort.rb' do
       expect{@unsorted.heapsort!}.not_to raise_error
   end
 
-  it ' float?' do
-    $i =0
-    while $i<@unsorted.length do
-      expect(@unsorted[$i]).to be_a_kind_of Float
-      $i+=1
-    end
-  end
+  
   it 'float' do
     @unsorted.heapsort!
     expect( @unsorted).to  match(@sorted)
   end
   it 'float from back ' do
-    @unsorted = [22.23,9.9,7.22, 5.22,5.21, 3.33,1.22, 0.12]
+    @unsorted = @sorted.reverse!
+
     @unsorted.heapsort!
     expect( @unsorted).to  match(@sorted)
   end
@@ -46,13 +41,7 @@ RSpec.describe 'heapsort.rb' do
     @unsorted.heapsort!
     expect(@unsorted.size).to eq(8)
   end
-  it 'table of string?' do
-    $i =0
-    while $i<@unsortedWords.length do
-      expect(@unsortedWords[$i]).to be_a_kind_of String
-      $i+=1
-    end
-  end
+  
   it 'uncorect string' do
     @unsortedWords.heapsort!
     expect(  @unsortedWords).to  match(@sortedWords)
@@ -63,7 +52,7 @@ RSpec.describe 'heapsort.rb' do
     expect(  @unsortedWords).to  match(@sortedWords)
   end
   it ' from back string' do
-    @unsortedWords=["STAREGO","MA","MA","KOTA","KOTKA","JOZEFA","BO","ALA"]
+    @unsortedWords=@sortedWords.reverse!
     @unsortedWords.heapsort!
     expect(  @unsortedWords).to  match(@sortedWords)
   end
@@ -80,14 +69,14 @@ RSpec.describe 'heapsort.rb' do
     @unsortedWords.heapsort!
     expect(  @unsortedWords).to  match(@sortedWords)
   end
-  it 'Sprawdzenie najmiejszej wartosci z pliku' do
+  it 'lowest value file float' do
     random_names = File.read("heapInt.txt")
     random_names= random_names.split(",").map { |s| s.to_i }
     random_names[0]=4
     random_names.heapsort!
     expect(random_names[0]).to eq(2)
   end
-  it 'Sprawdzenie najwiekszej wartosci z pliku' do
+  it 'biggest value file float' do
     random_names = File.read("heapInt.txt")
     random_names= random_names.split(",").map { |s| s.to_i }
     random_names.heapsort!
@@ -110,7 +99,6 @@ RSpec.describe 'heapsort.rb' do
     @unsorted.heapsort!
     expect(  @unsorted).to  match([*@sorted])
   end
-  # 40.times.map { ('a'..'z').to_a.shuffle[0..8].join}
   it 'float and string  = string' do
     @unsorted = [*@unsortedWords,"1" ,"3.33" ,"5.21" ,"5.22", "7","9.9", "12","22.23"]
     @unsorted.heapsort!
