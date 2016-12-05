@@ -10,6 +10,15 @@ public def heapsort!
     end
     j +=1
  }
+  #    j=0
+ # if(self.any? {|word| word.is_a?(Array)})
+#  self.each {
+#    if(self[j].is_a?(Array)) then
+#    Rozdziel self[j]
+ #   end
+ #   j +=1
+#}
+end
 
     1.upto(self.length - 1) do |i|
       child = i
